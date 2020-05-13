@@ -1,0 +1,338 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+    line-height: 1;
+    background-image: url('/static/images/background.jpg');
+    display: flex;
+    flex-direction: column;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+footer{
+    right: 10px;
+    width: 100%;
+    justify-content: flex-end;
+    display: flex;
+    bottom: 10px;
+    position: absolute;
+}
+
+body p{
+    font-family: 'Markazi Text', serif;
+    font-size: 21px;
+}
+
+footer h4{
+    font-family: 'Markazi Text', serif;
+    background: #2d3c81;
+    font-size: 24px;
+    padding: 7px;
+    border-radius: 4px;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 85px;
+}
+
+.content h1{
+    font-size: 50px;
+    font-family: 'Bangers', cursive;
+    color: #fff;
+}
+.content p{
+    color: white;
+    font-size: 22px;
+    font-family: 'Markazi Text', serif;
+    padding-top: 10px;
+}
+.boxes{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 100px;   
+    align-items: center;
+}
+
+.box{
+    padding: 0px 36px 0px 36px;
+    width: 355px;
+    height: 565px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.box h3{
+    color: #2e3a82;
+    padding: 22px;
+    font-family: 'Bangers', cursive;
+    font-size: 35px;
+    text-align: center;
+}
+
+.box__left{
+
+}
+.instrucoes__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box__left .instrucoes__container .instrucoes__title{
+    font-family: 'Markazi Text', serif;
+    font-size: 26px;
+    color: #2c3b80;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.box__left .instrucoes__container .instrucoes__text{
+    text-align: center;
+}
+.box__left .instrucoes__container ul{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px 17px 9px 17px;
+    margin-top: 17px;
+    align-items: space-evenly;
+    width: 100%;
+}
+
+.box__left .instrucoes__container ul li{
+    color: white;
+    border-radius: 3px;
+    font-size: 20px;
+    font-family: 'Bangers', cursive;
+    padding: 4px 13px 4px 12px;
+}
+.box__left .instrucoes__container small{
+    font-family: 'Markazi Text', serif;
+    font-size: 16px;
+}
+
+.box__left .instrucoes__container ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+.Picasso{
+    background: #4a4a4a;
+    color: white;
+    border-radius: 3px;
+    font-size: 20px;
+    font-family: 'Bangers', cursive;
+    padding: 4px 13px 4px 12px;
+}
+.Rembrandt{
+    background: #324e05;
+    color: white;
+    border-radius: 3px;
+    font-size: 20px;
+    font-family: 'Bangers', cursive;
+    padding: 4px 13px 4px 12px;
+}
+.Pollock{
+    background: #8a0101;
+    color: white;
+    border-radius: 3px;
+    font-size: 20px;
+    font-family: 'Bangers', cursive;
+    padding: 4px 13px 4px 12px;
+}
+
+.box__left .entrada__url{
+    margin-top: 30px;
+}
+.box__left .entrada__inputs{
+    display: flex;
+}
+
+.box__left .process-url{
+    background: #2d3c81;
+    padding: 0px 3px 0px 6px;
+    flex: 0.1;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    width: 39px;
+}
+.box__left .entrada__url input{
+    font-size: 28px;
+    height: 39px;
+    flex: 0.9;
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+    background: #ffffff;
+    color: #2d377e;
+    border: 1px solid #c8cacb;
+    box-shadow: none;
+    font-family: 'Markazi Text', serif;
+}
+
+.box__left .entrada__upload{
+    display: flex;
+    flex-direction: row;
+}
+.box__left .entrada__upload span{
+    padding: 8px 0px 8px 0px;
+    background: #2c3b80;
+    color: #Fff;
+    font-family: 'Markazi Text', serif;
+    font-size: 21px;
+    margin-top: 7px;
+    border-radius: 3px;
+    text-align: center;
+}
+
+/* .box__left .entrada__upload input{
+    display: none;
+} */
+
+.separador{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.linha{
+    background: #2e3a82de;
+    width: 45px;
+    height: 2px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+.separador .linhaesquerda{
+    margin-right: 8px;
+}
+
+.separador .linhadireita{
+    margin-left: 10px;
+}
+.separador .textOu{
+    color: #2e3a82;
+    /* padding: 22px; */
+    font-family: 'Bangers', cursive;
+    font-size: 25px;
+}
+
+
+.box__right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.box__right img{
+    width: 70%;
+    border-radius: 5px;
+}
+
+.box__right .resultado{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+#autor__resultado{
+    font-size: 30px;
+    text-align: center;
+}
+
+.resultado__show{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropzone{
+    padding: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#uploaddropzone{
+    width: 100%;
+    border: 1px solid #2c3b80;
+    border-style: dashed;
+}
+
+#uploaddropzone .dz-message{
+    font-family: 'Bangers', cursive;
+    color: #2e3a82;
+    font-size: 22px;
+}
+.dropzone .dz-preview.dz-error .dz-error-message{
+    display: none;
+}
+
+.resultado p{
+    text-align: center;
+}
+
+/* RESPONSIVO */
+
+@media only screen and (max-width: 900px) {
+    .boxes{
+        flex-direction: column;
+    }
+
+    .box{
+        margin-bottom: 30px;
+    }
+    footer{
+        position: initial;
+        display: flex;
+        justify-content: center;
+    }
+    .content p{
+        text-align: center;
+        font-size: 24px;
+    }
+}

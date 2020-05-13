@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="content">   
+        <h1>Classificador de Imagens</h1>
+        <p>Este software foi desenvolvido durante estudos do uso dos recursos de Visão Computacional disponiveis na Azure</p>
+    </div>
+    <div class="boxes">
+        <div class="box box__left">
+            <h3>Dados de Entrada</h3>
+            <div class="instrucoes__container">
+                <p class="instrucoes__title">Instruções:</p>
+                <p class="instrucoes__text">Envie uma pintura à ser analisada o sistema irá classificar se pertence aos seguintes Pintores:</p>
+                <ul>
+                    <li class="Picasso">
+                        <a target="__blank" href="https://www.google.com/search?q=pinturas+Picasso&tbm=isch&ved=2ahUKEwjChLioma3pAhVV_IUKHeYSBBwQ2-cCegQIABAA&oq=pinturas+Picasso&gs_lcp=CgNpbWcQAzoCCAA6BAgAEB5Qz4AQWK-MEGD-jBBoAnAAeACAAYQCiAG_DZIBAzItN5gBAKABAaoBC2d3cy13aXotaW1n&sclient=img&ei=Hv-5XsL9GdX4lwTmpZDgAQ&bih=969&biw=1920">
+                            Picasso
+                        </a>
+                    </li>
+                    <li class="Rembrandt">
+                        <a target="__blank" href="https://www.google.com/search?q=pinturas+Rembrandt&sxsrf=ALeKk03quCk5E1GTWcBYbeVHc5FyT7SBYw:1589247772088&source=lnms&tbm=isch&sa=X&ved=2ahUKEwia7ainma3pAhWj8uAKHVexBtYQ_AUoAXoECB0QAw&biw=1920&bih=969">
+                            Rembrandt
+                        </a>
+                    </li>
+                    <li class="Pollock">
+                        <a target="__blank" href="https://www.google.com/search?q=pinturas+Pollock&tbm=isch&ved=2ahUKEwjKpuOmmq3pAhWW04UKHfjTA_cQ2-cCegQIABAA&oq=pinturas+Pollock&gs_lcp=CgNpbWcQAzICCAAyBAgAEB4yBAgAEB4yBAgAEB4yBggAEAgQHjIGCAAQCBAeMgYIABAIEB4yBggAEAgQHjIGCAAQCBAeMgYIABAIEB5QkJkBWPCvAWDfsAFoCXAAeAOAAfoBiAHODZIBBTEuMC43mAEAoAEBqgELZ3dzLXdpei1pbWc&sclient=img&ei=JwC6Xor3FpanlwT4p4-4Dw&bih=969&biw=1920">
+                            Pollock
+                        </a>
+                    </li>
+                </ul>
+                <small>*Clique no nome do pintor para obter exemplos de suas pinturas</small>
+            </div>
+            <div class="entrada__url">
+                <p>Informe a URL da imagem</p>
+                <div class="entrada__inputs">
+                    <input type="text" id="urlimagem"/>
+                    <img class="process-url" src="{{ url_for('static', filename='icons/arrowright.png')}}" alt="">
+                </div>
+                
+            </div>
+            <div class="separador">
+                <span class="linha linhaesquerda"></span>
+                <span class="textOu">OU</span>
+                <span class="linha linhadireita"></span>
+            </div>
+            <div class="entrada__upload">
+                <div class="dropzone" id="uploaddropzone">
+                    <div class="dz-message">Arraste e solte a pintura  aqui
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box box__right">
+            <h3>Resultado</h3>
+            <div class="resultado__show">
+                <img class="pintura_img" src="">
+                <div class="resultado">
+                    <p class="message"></p>
+                    <span id="autor__resultado"></span>
+                </div>
+            </div> 
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super()}}
+    <script>
+        $(function() {
+            // Now that the DOM is fully loaded, create the dropzone, and setup the
+            // event listeners
+            var myDropzone = new Dropzone("#uploaddropzone",{
+                url:"/processarUpload",
+                maxFiles: 1,
+                uploadMultiple: false,
+                clickable: false,
+            });
+            myDropzone.on("drop", function(file) {
+                myDropzone.removeAllFiles();
+            });
+
+            myDropzone.on("success", function(data) {
+                response = JSON.parse(data.xhr.response)
+                mostrarResultados(response)
+            });
+        })
+
+        function mostrarResultados(data){
+            limparResultados()
+            var autor = data.Autor;
+            var probability = data.Probability;
+            var image = data.Image;
+
+            if(data.Status){          
+                $('#autor__resultado').addClass(autor);
+                $('.message').text("Essa pintura é uma obra do autor:")
+                $('#autor__resultado').text(autor + " - " + probability+"%");
+                if(data.ShowImage){
+                    $('.pintura_img').attr("src", image);
+                }
+                $('.resultado__show').fadeIn();
+            }else{
+                if(data.ShowImage){
+                    $('.pintura_img').attr("src", image);
+                }
+                $('.message').text(data.Message);
+                $('.resultado__show').fadeIn();
+            }
+        }
+        
+
+        function limparResultados(){
+            $('.resultado__show').fadeOut();
+            $('.pintura_img').attr("src", "");
+            $('.message').text("");
+            $('#autor__resultado').text("");
+            $('#autor__resultado').removeClass();
+        }
+
+        $(".process-url").click(function(){
+            var url_imagem = $('#urlimagem').val();
+            if(url_imagem == ""){
+                $('.message').text("Você precisa informar a URL de uma imagem da Web ou adicionar uma de seu computador")
+                return false;
+            }
+
+            $.ajax({
+                url: "/processarURL", 
+                data:{"url": url_imagem,},
+                dataType: 'json',
+                method:"POST",
+                success: function(response){
+                    mostrarResultados(response)
+                }
+            });
+        });
+    </script>
+{% endblock %}

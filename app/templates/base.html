@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Reconhecimento de Imagens</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    {% block styles %}
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+      <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Markazi+Text:wght@562&display=swap" rel="stylesheet">
+      <link href="{{ url_for('static', filename='css/dropzone.css')}}" rel="stylesheet">
+
+    {% endblock %}
+
+  </head>
+
+
+  <body>
+    {% block content %}
+    
+    {% endblock %}
+
+    {% block footer %}
+        <footer class="footer text-center">
+            <h4 class="jump-30"> Desenvolvido por: Thailan Higor</h4>
+        </footer>
+    {% endblock %}
+    {% block scripts %}
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script src="{{ url_for('static', filename='js/dropzone.js')}}"></script>
+
+    {% endblock  %}
+
+  </body>
+</html>
+
+
+
+   
+
+
+

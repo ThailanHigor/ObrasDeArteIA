@@ -2,17 +2,17 @@ from . import home
 from flask import render_template, flash, request, jsonify, make_response
 from werkzeug.utils import secure_filename
 from app import db
+from app import UPLOAD_FOLDER
+from app import ALLOWED_EXTENSIONS
+from app import API_AZURE
+from app import KEY
+
 import requests
 import json
 import pandas as pd
 import numpy as np
 import os
 
-
-ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-UPLOAD_FOLDER = 'F:/Projetos Pessoais/Python/Azure Machine Learning/Image Classification/app/static/uploads'
-API_AZURE = 'https://southcentralus.api.cognitive.microsoft.com/customvision/v3.0/Prediction/fed35364-6f4e-4d46-98db-b13c4389e2d7/classify/iterations/Iteration4/{tipo}'
-KEY = '8fb419f53f064296bbaafd37fcba6d63'
 
 @home.route("/", methods=["GET","POST"])
 def index():

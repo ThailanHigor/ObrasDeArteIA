@@ -69,7 +69,7 @@ def processarUpload():
         print(os.path.join(UPLOAD_FOLDER, filename))
         file.save(os.path.join(UPLOAD_FOLDER, filename))
         
-        url_fisica = 'F:/Projetos Pessoais/Python/Azure Machine Learning/Image Classification/app/static/uploads/{0}'.format(filename)
+        url_fisica = os.path.join(UPLOAD_FOLDER, filename)
         url_media = request.url_root + 'static/uploads/{0}'.format(filename)
         file = open(url_fisica, 'rb')
 
